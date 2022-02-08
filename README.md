@@ -1,0 +1,12 @@
+# Plank App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### Step 1 - Getting Started
+ - using create-react-app
+ - removing unnecessary files and images
+
