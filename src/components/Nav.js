@@ -6,8 +6,8 @@ class Nav extends React.Component {
     return (
     <div>
         <nav>
-			<ul class="menu">
-				<li class="active">All</li>
+			<ul className="menu">
+				<li className="active">All</li>
 				<li>Arts & Culture</li>
 				<li>Non-Profits</li>
                 <li>Publishing and Education</li>
