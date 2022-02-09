@@ -10,6 +10,7 @@
         color: #fff;
         font-family: 'Roboto', sans-serif;
     }
+    
 
     #title {
         color:#EEECEC;
@@ -27,11 +28,6 @@
         border-bottom: 2px solid #EEECEC;
         width: 1280px;
     }
-
-    /* #divider {
-        border-bottom: 2px solid #EEECEC;
-        width: 1280px;
-    } */
 
     ul {
         list-style: none;
@@ -65,7 +61,6 @@
         width: 50%;
         float: left;
         text-align: center; 
-        background:yellow;
     }
 
 
