@@ -8,12 +8,12 @@ class Nav extends React.Component {
     <div>
         <nav>
 			<ul className="menu">
-				<li onClick={this.props.allFilter} className="active">All</li>
-				<li onClick={this.props.artsFilter}>Arts & Culture</li>
-				<li onClick={this.props.nonProfitsFilter}>Non-Profits</li>
-                <li onClick={this.props.publishingFilter}>Publishing and Education</li>
-				<li onClick={this.props.wellnessFilter}>Wellness</li>
-                <li onClick={this.props.sportsFilter}>Sports</li>
+				<li onClick={this.props.allFilter} className={ this.props.allActive ? "active": ''}>All</li>
+				<li onClick={this.props.artsFilter} className={ this.props.artsActive ? "active": ''}>Arts & Culture</li>
+				<li onClick={this.props.nonProfitsFilter} className={ this.props.nonProfitsActive ? "active": ''}>Non-Profits</li>
+                <li onClick={this.props.publishingFilter} className={ this.props.publishingActive ? "active": ''}>Publishing and Education</li>
+				<li onClick={this.props.wellnessFilter} className={ this.props.wellnessActive ? "active": ''}>Wellness</li>
+                <li onClick={this.props.sportsFilter} className={ this.props.sportsActive ? "active": ''}>Sports</li>
 			</ul>
         </nav>
       </div>

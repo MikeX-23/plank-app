@@ -51,6 +51,8 @@
         box-sizing: border-box;
     }
 
+
+
     #container {
         width: 1280px;
         transform: translate(-195px, 10px);
