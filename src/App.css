@@ -53,7 +53,7 @@
 
     #container {
         width: 1280px;
-        transform: translate(-180px, 10px);
+        transform: translate(-195px, 10px);
         
     }
 
@@ -142,6 +142,13 @@
         top: 215px;
         left: -492px;
         width: 200px;
-        height: 200px;
-        
+        height: 200px;   
     }
+
+  #results {
+      font-size: 4rem;
+      text-align:center;
+      margin-bottom: 500px;
+  }
+    
+

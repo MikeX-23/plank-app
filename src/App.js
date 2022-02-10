@@ -14,9 +14,16 @@ class App extends React.Component {
     super()
     this.state = {
         caseData: [],
-        categories: []
+        caseCategories: [],
+        noResults: false
+        
     }
-    
+    this.allFilter = this.allFilter.bind(this)
+    this.artsFilter = this.artsFilter.bind(this)
+    this.nonProfitsFilter = this.nonProfitsFilter.bind(this)
+    this.publishingFilter = this.publishingFilter.bind(this)
+    this.wellnessFilter = this.wellnessFilter.bind(this)
+    this.sportsFilter = this.sportsFilter.bind(this)
   }
 
   componentDidMount() {
@@ -25,16 +32,146 @@ class App extends React.Component {
     // Getting Data
     axios.get(firstApi).then(res => {
       this.setState({ caseData: res.data["case-studies"]}) 
-      console.log(this.state.caseData[0].categories[0].title)
+      console.log(this.state.caseData[6].categories[0].title)
     })
-    // axios.get(secondApi).then(res => {
-    //   this.setState({ categories: res.data["categories"]}) 
-    //   console.log(this.state.categories[0].title)
-    // })
-
     
-
   }
+
+  allFilter() {
+      // Making Request to API
+      const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+      axios.get(firstApi).then(res => {
+        this.setState({ caseData: res.data["case-studies"],
+        noResults: false
+      }) 
+        const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories' 
+        axios.get(secondApi).then(res => {
+         this.setState({ 
+           caseCategories: res.data["categories"],
+      
+        })
+    
+     
+        if(this.state.caseData) {
+        var allData = this.state.caseData.filter((item) => {
+               return this.state.caseData
+              })
+              this.setState({
+                caseData: allData
+              })
+            }
+       })
+      })
+  }
+ 
+  artsFilter() {
+    // Making Request to API
+    const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+    axios.get(firstApi).then(res => {
+      this.setState({ caseData: res.data["case-studies"],
+      noResults: false
+    }) 
+      const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories' 
+      axios.get(secondApi).then(res => {
+       this.setState({ 
+         caseCategories: res.data["categories"]
+      })
+  
+      // filtering category title
+      if(this.state.caseCategories[0].title == this.state.caseData[0].categories[0].title) {
+      var artData = this.state.caseData.filter((item) => {
+             return this.state.caseCategories[0].title == item.categories[0].title
+            })
+            this.setState({
+              caseData: artData
+            })
+          }
+     })
+    })
+    
+  }
+
+  nonProfitsFilter() {
+    // Getting Data
+    const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+    axios.get(firstApi).then(res => {
+      this.setState({ caseData: res.data["case-studies"],
+      noResults: false
+    }) 
+      const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
+      axios.get(secondApi).then(res => {
+       this.setState({ 
+         caseCategories: res.data["categories"]})
+
+         if(this.state.caseCategories[1].title == this.state.caseData[3].categories[0].title ) {
+          var nonProfitData = this.state.caseData.filter((item) => {
+                 return this.state.caseCategories[1].title == item.categories[0].title
+            })
+
+          this.setState({
+            caseData: nonProfitData
+      }) 
+     }
+   })    
+ })
+}
+
+publishingFilter() {
+  // Getting Data
+  const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+  axios.get(firstApi).then(res => {
+    this.setState({ caseData: res.data["case-studies"],
+    noResults: false
+  }) 
+    const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
+    axios.get(secondApi).then(res => {
+     this.setState({ 
+       caseCategories: res.data["categories"]})
+
+       if(this.state.caseCategories[2].title == this.state.caseData[4].categories[0].title ) {
+        var publishingData = this.state.caseData.filter((item) => {
+               return this.state.caseCategories[2].title == item.categories[0].title
+          })
+
+        this.setState({
+          caseData: publishingData
+    }) 
+   }
+ })    
+})
+}
+
+wellnessFilter() {
+  // Getting Data
+  const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+  axios.get(firstApi).then(res => {
+    this.setState({ caseData: res.data["case-studies"],
+    noResults: false
+  }) 
+    const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
+    axios.get(secondApi).then(res => {
+     this.setState({ 
+       caseCategories: res.data["categories"]})
+
+       if(this.state.caseCategories[4].title == this.state.caseData[6].categories[0].title ) {
+        var wellnessData = this.state.caseData.filter((item) => {
+               return this.state.caseCategories[4].title == item.categories[0].title
+          })
+
+        this.setState({
+          caseData: wellnessData
+    }) 
+   }
+ })    
+})
+}
+
+sportsFilter() {
+        this.setState({
+          caseData: [],
+          noResults: true      
+    }) 
+}
 
   render() {
     return (
@@ -42,7 +179,14 @@ class App extends React.Component {
         <img src={asset2} alt="3 rows of green dots" id="asset2" />
         
         <h1 id="title">Work</h1>
-            <Nav />
+            <Nav 
+                allFilter = {this.allFilter}
+                artsFilter = {this.artsFilter}
+                nonProfitsFilter = {this.nonProfitsFilter}
+                publishingFilter = {this.publishingFilter}
+                wellnessFilter = {this.wellnessFilter}
+                sportsFilter = {this.sportsFilter}
+            />
         <section id="container">
           {this.state.caseData.map((study) => (
             <div className="card">
@@ -53,9 +197,11 @@ class App extends React.Component {
               <h3 className="view">View Case Study <img src={arrow} id="arrow" alt="right arrow icon"/></h3>
             </div>
         ))} 
+         { this.state.noResults ? <h1 id="results">No Results Found</h1>: '' }
         <img src={asset3} alt="big green circle with smaller orange circle attached on the left " id="asset3" />
         <img src={asset1} alt="3 rows of orange dots with white circle" id="asset1" />
         </section>
+       
     </div>
     );
   }
