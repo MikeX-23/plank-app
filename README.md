@@ -59,3 +59,6 @@
  - Used a ternary operator to add the active class. If the active state is true, the "active" class will be added to the category, which will give it a border. 
 
 
+## Step 8 - Adding Animations
+ - Added animation on the navigation
+ - Added animation on thumbnails. Scales up when user hovers. More interactive.
