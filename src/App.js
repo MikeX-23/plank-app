@@ -21,10 +21,9 @@ class App extends React.Component {
         nonProfitsActive: false,
         publishingActive: false,
         wellnessActive: false,
-        sportsActive: false
-        
-        
+        sportsActive: false     
     }
+    // Binding Functions
     this.allFilter = this.allFilter.bind(this)
     this.artsFilter = this.artsFilter.bind(this)
     this.nonProfitsFilter = this.nonProfitsFilter.bind(this)
@@ -34,56 +33,50 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
-
-    // Getting Data
-    axios.get(firstApi).then(res => {
+    const caseStudy = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+    // Making API Request
+    axios.get(caseStudy).then(res => {
       this.setState({ 
         caseData: res.data["case-studies"],
         allActive: true
     }) 
-      console.log(this.state.caseData[6].categories[0].title)
-    })
-    
-  }
+  })  
+}
 
   allFilter() {
-      // Making Request to API
-      const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
-      axios.get(firstApi).then(res => {
-        this.setState({ caseData: res.data["case-studies"],
-        noResults: false,
-        allActive: true,
-        artsActive: false,
-        nonProfitsActive: false,
-        publishingActive: false,
-        wellnessActive: false,
-        sportsActive: false
-      }) 
-        const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories' 
-        axios.get(secondApi).then(res => {
-         this.setState({ 
-           caseCategories: res.data["categories"],
-      
+  // Making Request to API
+  const caseStudy = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+  axios.get(caseStudy).then(res => {
+    this.setState({ caseData: res.data["case-studies"],
+    noResults: false,
+    allActive: true,
+    artsActive: false,
+    nonProfitsActive: false,
+    publishingActive: false,
+    wellnessActive: false,
+    sportsActive: false
+  }) 
+  const categories = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories' 
+    axios.get(categories).then(res => {
+      this.setState({ 
+        caseCategories: res.data["categories"],
         })
-    
-     
-        if(this.state.caseData) {
-        var allData = this.state.caseData.filter((item) => {
-               return this.state.caseData
-              })
-              this.setState({
-                caseData: allData
-              })
-            }
-       })
+          if(this.state.caseData) {
+          var allData = this.state.caseData.filter(() => {
+                return this.state.caseData
+                })
+                this.setState({
+                  caseData: allData
+                })
+              }
+        })
       })
   }
  
   artsFilter() {
     // Making Request to API
-    const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
-    axios.get(firstApi).then(res => {
+    const caseStudy = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+    axios.get(caseStudy).then(res => {
       this.setState({ caseData: res.data["case-studies"],
       noResults: false,
       allActive: false,
@@ -93,8 +86,8 @@ class App extends React.Component {
       wellnessActive: false,
       sportsActive: false
     }) 
-      const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories' 
-      axios.get(secondApi).then(res => {
+      const categories = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories' 
+      axios.get(categories).then(res => {
        this.setState({ 
          caseCategories: res.data["categories"]
       })
@@ -115,8 +108,8 @@ class App extends React.Component {
 
   nonProfitsFilter() {
     // Getting Data
-    const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
-    axios.get(firstApi).then(res => {
+    const caseStudy= 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+    axios.get(caseStudy).then(res => {
       this.setState({ caseData: res.data["case-studies"],
       noResults: false,
       allActive: false,
@@ -126,16 +119,14 @@ class App extends React.Component {
       wellnessActive: false,
       sportsActive: false
     }) 
-      const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
-      axios.get(secondApi).then(res => {
+      const categories = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
+      axios.get(categories).then(res => {
        this.setState({ 
          caseCategories: res.data["categories"]})
-
          if(this.state.caseCategories[1].title == this.state.caseData[3].categories[0].title ) {
           var nonProfitData = this.state.caseData.filter((item) => {
                  return this.state.caseCategories[1].title == item.categories[0].title
             })
-
           this.setState({
             caseData: nonProfitData
       }) 
@@ -146,8 +137,8 @@ class App extends React.Component {
 
 publishingFilter() {
   // Getting Data
-  const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
-  axios.get(firstApi).then(res => {
+  const caseStudy = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+  axios.get(caseStudy).then(res => {
     this.setState({ caseData: res.data["case-studies"],
     noResults: false,
     allActive: false,
@@ -157,16 +148,14 @@ publishingFilter() {
     wellnessActive: false,
     sportsActive: false
   }) 
-    const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
-    axios.get(secondApi).then(res => {
+    const categories = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
+    axios.get(categories).then(res => {
      this.setState({ 
        caseCategories: res.data["categories"]})
-
        if(this.state.caseCategories[2].title == this.state.caseData[4].categories[0].title ) {
         var publishingData = this.state.caseData.filter((item) => {
                return this.state.caseCategories[2].title == item.categories[0].title
           })
-
         this.setState({
           caseData: publishingData
     }) 
@@ -177,8 +166,8 @@ publishingFilter() {
 
 wellnessFilter() {
   // Getting Data
-  const firstApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
-  axios.get(firstApi).then(res => {
+  const caseStudy = 'https://plankdesign.com/wp-json/plank/v1/fed-test/case-studies'
+  axios.get(caseStudy).then(res => {
     this.setState({ caseData: res.data["case-studies"],
     noResults: false,
     allActive: false,
@@ -188,16 +177,14 @@ wellnessFilter() {
     wellnessActive: true,
     sportsActive: false
   }) 
-    const secondApi = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
-    axios.get(secondApi).then(res => {
+    const categories = 'https://plankdesign.com/wp-json/plank/v1/fed-test/categories'
+    axios.get(categories).then(res => {
      this.setState({ 
        caseCategories: res.data["categories"]})
-
        if(this.state.caseCategories[4].title == this.state.caseData[6].categories[0].title ) {
         var wellnessData = this.state.caseData.filter((item) => {
                return this.state.caseCategories[4].title == item.categories[0].title
           })
-
         this.setState({
           caseData: wellnessData
     }) 
@@ -226,6 +213,7 @@ sportsFilter() {
         
         <h1 id="title">Work</h1>
             <Nav 
+                // Filtering Props
                 allFilter = {this.allFilter}
                 artsFilter = {this.artsFilter}
                 nonProfitsFilter = {this.nonProfitsFilter}
@@ -233,6 +221,8 @@ sportsFilter() {
                 wellnessFilter = {this.wellnessFilter}
                 sportsFilter = {this.sportsFilter}
 
+
+                // Adding Active Props
                 allActive = {this.state.allActive} 
                 artsActive = {this.state.artsActive} 
                 nonProfitsActive = {this.state.nonProfitsActive} 
